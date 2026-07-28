@@ -1,14 +1,20 @@
-# Byron — Resume
+# Byron Xavier Mataya — Resume
 
-Personal resume site hosted for free on **GitHub Pages**.
+Professional resume site hosted for free on **GitHub Pages**, with one-click PDF download.
 
 **Live site:** [https://byron02.github.io/resume/](https://byron02.github.io/resume/)
 
+## Features
+
+- **Unlock gate** — hold-to-unlock intro before credentials appear (Enter / Esc also works)
+- **Interactive web** — particle field, custom cursor, typed title, magnetic buttons, 3D tilt cards, scroll reveals, reading progress
+- **Designed PDF** — branded two-column layout with blue sidebar (not a plain generic CV)
+- Edit once in [`data.js`](data.js); both views update
+- Free GitHub Pages hosting (no Firebase)
+
 ## Edit your resume
 
-1. Update content in [`index.html`](index.html) (name, contact, experience, education, skills, projects).
-2. Tweak look in [`styles.css`](styles.css) if you want.
-3. Commit and push to `main` — the site updates automatically after Pages is enabled.
+Update content in [`data.js`](data.js) only. The website and the downloadable PDF both read from that file.
 
 ```bash
 git add .
@@ -18,18 +24,14 @@ git push origin main
 
 ## Enable GitHub Pages (one-time)
 
-If the live URL above does not load yet:
-
 1. Open the repo on GitHub → **Settings** → **Pages**.
-2. Under **Build and deployment** → **Source**, choose **GitHub Actions** (this repo includes a Pages workflow), or **Deploy from a branch** → `main` / `/ (root)`.
-3. Wait a minute, then visit [https://byron02.github.io/resume/](https://byron02.github.io/resume/).
+2. Under **Build and deployment** → **Source**, choose **GitHub Actions** (workflow included), or **Deploy from a branch** → `main` / `/ (root)`.
+3. Visit [https://byron02.github.io/resume/](https://byron02.github.io/resume/).
 
-## Save as PDF
+## Download PDF
 
-Open the live page (or `index.html` locally), then use your browser: **Print** → **Save as PDF**.
+Open the site and click **Download Resume** / **Download PDF**, then choose **Save as PDF** in the print dialog.
 
-## Stack
+## Compared to the Firebase portfolio version
 
-- Static HTML + CSS (no build step)
-- [IBM Plex](https://fonts.google.com/specimen/IBM+Plex+Sans) for typography
-- GitHub Pages for hosting (free for public repos)
+The earlier dynamic site (`resume-site`) used Firebase for live editing. This repo stays **static** so it deploys cleanly on free GitHub Pages with no cloud bill, API keys, or open database rules.

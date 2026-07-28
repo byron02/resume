@@ -5,175 +5,182 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Resume of Byron — Software Engineer. Replace this summary with your own."
+      content="Resume of Byron Xavier Mataya — Software Engineer. Interactive portfolio with designed PDF download."
     />
-    <title>Byron — Resume</title>
+    <title>Byron Xavier Mataya — Software Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="page">
-      <header class="header">
-        <div class="identity">
-          <h1 class="name">Byron</h1>
-          <p class="title">Software Engineer</p>
+    <a class="skip-link" href="#top">Skip to content</a>
+
+    <!-- Custom cursor (desktop) -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+    <!-- INTRO GATE — credentials hidden until unlock -->
+    <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+      <canvas id="gateCanvas" class="gate-canvas" aria-hidden="true"></canvas>
+      <div class="gate-content">
+        <p class="gate-kicker">Portfolio access</p>
+        <h1 id="gateTitle" class="gate-title">
+          <span class="gate-hello">Hey,</span>
+          <span class="gate-line">ready to meet</span>
+          <span class="gate-name" id="gateName">Byron</span>
+          <span class="gate-q">?</span>
+        </h1>
+        <p class="gate-sub" id="gateTagline">I build things people actually use.</p>
+
+        <button type="button" class="unlock-btn" id="unlockBtn" aria-describedby="unlockHint">
+          <span class="unlock-ring" aria-hidden="true"></span>
+          <span class="unlock-fill" id="unlockFill" aria-hidden="true"></span>
+          <span class="unlock-label" id="unlockLabel">Hold to unlock</span>
+        </button>
+        <p class="unlock-hint" id="unlockHint">Or press <kbd>Enter</kbd> · Esc skips</p>
+      </div>
+    </div>
+
+    <!-- MAIN SITE (revealed after unlock) -->
+    <div id="web-site" class="web-site is-locked" inert>
+      <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+          <a class="logo" href="#top">BXM</a>
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+              <button type="button" class="nav-download" data-download>
+                <i class="fas fa-file-arrow-down" aria-hidden="true"></i> PDF
+              </button>
+            </li>
+          </ul>
         </div>
-        <ul class="contact" aria-label="Contact">
-          <li>
-            <a href="mailto:you@example.com">you@example.com</a>
-          </li>
-          <li>
-            <a href="https://github.com/byron02" rel="noopener noreferrer"
-              >github.com/byron02</a
-            >
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/your-profile" rel="noopener noreferrer"
-              >linkedin.com/in/your-profile</a
-            >
-          </li>
-          <li>
-            <span>Your City, Country</span>
-          </li>
-        </ul>
+        <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+      </nav>
+
+      <header class="hero" id="top">
+        <div class="hero-orb hero-orb--a" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb--b" aria-hidden="true"></div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <p class="hero-badge reveal">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              Open to opportunities
+            </p>
+            <h1 id="heroName" class="hero-name"></h1>
+            <h2 class="hero-role">
+              <span class="role-bar" aria-hidden="true"></span>
+              <span id="typedTitle"></span><span class="typed-caret" id="typedCaret" aria-hidden="true"></span>
+            </h2>
+            <p class="hero-summary reveal stagger-1" id="heroSummary"></p>
+            <div class="hero-actions reveal stagger-2">
+              <button type="button" class="btn btn-primary magnetic" data-download>
+                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                Download designed PDF
+              </button>
+              <a class="btn btn-outline magnetic" href="#contact">Let’s talk</a>
+            </div>
+            <ul class="hero-chips reveal stagger-3" id="heroChips" aria-label="Quick links"></ul>
+          </div>
+          <div class="hero-visual reveal stagger-2">
+            <div class="avatar-stage" id="avatarStage">
+              <div class="avatar-ring" aria-hidden="true"></div>
+              <div class="avatar-ring avatar-ring--2" aria-hidden="true"></div>
+              <div class="profile-blob" id="profileBlob">
+                <img id="profilePhoto" src="profile.jpg" alt="Byron Xavier Mataya" width="280" height="280" />
+                <span id="profileInitials" class="profile-fallback" aria-hidden="true"></span>
+              </div>
+              <div class="float-chip float-chip--1" data-tilt>Code</div>
+              <div class="float-chip float-chip--2" data-tilt>Lead</div>
+              <div class="float-chip float-chip--3" data-tilt>Ship</div>
+            </div>
+          </div>
+        </div>
+        <a class="scroll-cue" href="#about" aria-label="Scroll to about"><span></span></a>
       </header>
 
-      <section class="section" aria-labelledby="summary-heading">
-        <h2 id="summary-heading">Summary</h2>
-        <p>
-          <!-- Replace with 2–3 sentences about your focus and strengths. -->
-          Software engineer building reliable web products. Interested in
-          clean interfaces, solid APIs, and shipping work that people actually
-          use. Open to full-time and contract roles.
-        </p>
+      <section class="section" id="about">
+        <div class="container about-inner">
+          <h2 class="section-title reveal">About</h2>
+          <p class="section-lead reveal">How I think and build.</p>
+          <div class="about-copy reveal" id="aboutCopy"></div>
+        </div>
       </section>
 
-      <section class="section" aria-labelledby="experience-heading">
-        <h2 id="experience-heading">Experience</h2>
-
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Job Title</h3>
-            <p class="meta">
-              <span class="org">Company Name</span>
-              <span class="sep" aria-hidden="true">·</span>
-              <time datetime="2022-01">Jan 2022</time> – Present
-            </p>
-          </div>
-          <ul>
-            <li>
-              Replace this bullet with a concrete achievement (what you did +
-              impact).
-            </li>
-            <li>
-              Quantify results where you can (latency, revenue, users, time
-              saved).
-            </li>
-            <li>
-              Call out stack or ownership that matches roles you’re targeting.
-            </li>
-          </ul>
-        </article>
-
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Previous Role</h3>
-            <p class="meta">
-              <span class="org">Previous Company</span>
-              <span class="sep" aria-hidden="true">·</span>
-              <time datetime="2019-06">Jun 2019</time> –
-              <time datetime="2021-12">Dec 2021</time>
-            </p>
-          </div>
-          <ul>
-            <li>Describe a project you owned end-to-end.</li>
-            <li>Mention collaboration (design, product, infra) if relevant.</li>
-          </ul>
-        </article>
+      <section class="section light-bg" id="skills">
+        <div class="container">
+          <h2 class="section-title reveal">Technical Skills</h2>
+          <p class="section-lead reveal">Hover a skill — they’re alive.</p>
+          <div class="skills-grid" id="skillsList"></div>
+        </div>
       </section>
 
-      <section class="section" aria-labelledby="projects-heading">
-        <h2 id="projects-heading">Projects</h2>
-
-        <article class="entry">
-          <div class="entry-head">
-            <h3>
-              <a href="https://github.com/byron02/resume" rel="noopener noreferrer"
-                >Personal Resume Site</a
-              >
-            </h3>
-            <p class="meta">HTML · CSS · GitHub Pages</p>
-          </div>
-          <ul>
-            <li>
-              Static resume hosted for free on GitHub Pages; print-ready for PDF
-              export.
-            </li>
-          </ul>
-        </article>
-
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Project Name</h3>
-            <p class="meta">Tech · Stack · Here</p>
-          </div>
-          <ul>
-            <li>One-line description of what it does and why it matters.</li>
-          </ul>
-        </article>
+      <section class="section" id="experience">
+        <div class="container">
+          <h2 class="section-title reveal">Work Experience</h2>
+          <div class="timeline" id="experienceList"></div>
+        </div>
       </section>
 
-      <section class="section" aria-labelledby="education-heading">
-        <h2 id="education-heading">Education</h2>
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Degree or Program</h3>
-            <p class="meta">
-              <span class="org">School or University</span>
-              <span class="sep" aria-hidden="true">·</span>
-              <time datetime="2019">2015</time> –
-              <time datetime="2019">2019</time>
-            </p>
-          </div>
-          <ul>
-            <li>Relevant coursework, honors, or focus area (optional).</li>
-          </ul>
-        </article>
+      <section class="section light-bg" id="projects">
+        <div class="container">
+          <h2 class="section-title reveal">Featured Projects</h2>
+          <div class="projects-grid" id="projectList"></div>
+        </div>
       </section>
 
-      <section class="section skills" aria-labelledby="skills-heading">
-        <h2 id="skills-heading">Skills</h2>
-        <dl class="skill-grid">
-          <div>
-            <dt>Languages</dt>
-            <dd>TypeScript, JavaScript, Python, SQL</dd>
-          </div>
-          <div>
-            <dt>Frontend</dt>
-            <dd>React, HTML, CSS</dd>
-          </div>
-          <div>
-            <dt>Backend</dt>
-            <dd>Node.js, REST APIs</dd>
-          </div>
-          <div>
-            <dt>Tools</dt>
-            <dd>Git, GitHub, CI/CD</dd>
-          </div>
-        </dl>
+      <section class="section" id="education">
+        <div class="container">
+          <h2 class="section-title reveal">Education</h2>
+          <div class="education-grid" id="educationList"></div>
+        </div>
       </section>
 
-      <footer class="footer no-print">
-        <p>
-          Tip: use your browser’s Print dialog → Save as PDF for a downloadable
-          copy.
-        </p>
+      <footer class="footer" id="contact">
+        <div class="container">
+          <h2 class="section-title reveal">Let’s build something</h2>
+          <p class="footer-lead reveal">Credentials unlocked. Reach out anytime.</p>
+          <div class="contact-grid" id="contactList"></div>
+          <div class="footer-actions reveal">
+            <button type="button" class="btn btn-primary magnetic" data-download>
+              <i class="fas fa-download" aria-hidden="true"></i>
+              Download designed PDF
+            </button>
+          </div>
+          <p class="copyright">
+            &copy; <span id="year"></span>
+            <span id="footerName"></span>. Crafted with intention.
+          </p>
+        </div>
       </footer>
     </div>
+
+    <!-- Designed PDF layout (print only) -->
+    <div id="print-resume" class="print-resume" aria-hidden="true"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

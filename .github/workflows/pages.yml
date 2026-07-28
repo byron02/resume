@@ -30,7 +30,7 @@ jobs:
       - name: Prepare site files
         run: |
           mkdir _site
-          cp index.html styles.css .nojekyll _site/
+          cp index.html styles.css script.js data.js profile.jpg .nojekyll _site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
